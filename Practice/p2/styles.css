@@ -1,0 +1,26 @@
+div{
+    border: 8px;
+    padding-left: 50px;
+    padding-bottom: 2px;
+    padding-top: 2px;
+    background-clip: border-box;
+    background-color: navy;
+    color: white;
+
+}
+fig {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+images{
+    display: flex;
+    
+}
+space{
+    display: block;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+fig img{
+    display: block;
+}
