@@ -266,6 +266,11 @@
                    }
                      $('#result6').append("</br></br>");
                     $('#result6').append("<strong>Score: <strong>" + score + "/6");
+                    if(score >= 5)
+                    {
+                        $('#result6').append("</br></br>");
+                        $('#result6').append("CONGRATS!!!!");
+                    }
                 })
         </script>
     </body>
