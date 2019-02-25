@@ -1,0 +1,36 @@
+html {
+    overflow-x: hidden;
+}
+h1 {
+    text-align: center;
+    background: #eee;
+    margin: -.5rem -1rem 1rem -1rem;
+    padding-top: .5rem;
+    padding-bottom: 3rem;
+    overflow-x: hidden;
+}
+table {
+    text-align: right;
+    display: flex;
+    justify-content: center;
+    border-collapse: collapse;
+}
+th, td {
+    border: 1px solid black;
+    padding: .2rem .5rem;
+}
+
+div {
+    text-align: center;
+}
+#error {
+    color: red;
+}
+bot {
+    text-align: center;
+    display: flex;
+    padding-top: 3rem;
+    font-weight: bold;
+    font-size: 200%;
+    justify-content: center;
+}

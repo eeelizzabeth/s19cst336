@@ -1,0 +1,150 @@
+<html>
+<head>
+    <title>Shopping Cart</title>
+    <script src="https://code.jquery.com/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/styles.css" type="text/css" />
+</head>
+
+<body>
+    <h1> Spring Break Shopping  </h1>
+
+    <table>
+    <tr>
+        <th>Product</th>
+        <th>Unit <br> Price</th>
+        <th> Quantity </th>
+        <th>Total</th>
+    </tr>
+    <tr>
+        <td>Microfiber Beach Towel</td>
+        <td>$30</td>
+        <td><input type="text" size="5" id="1"></td>
+        <td id="total1"></td>
+    </tr>
+
+   <tr>
+        <td>Sunscreen 100SPF, 120ml</td>
+        <td>$10</td>
+        <td><input type="text" size="5" id="2"/></td>
+        <td id="total2"></td>
+    </tr>    
+    
+    <tr>
+        <td>Ipanema Flip-flop Sandals </td>
+        <td>$20</td>
+        <td><input type="text" size="5" id="3"/></td>
+        <td id="total3"></td>
+    </tr>
+
+   <tr>
+        <td>Shipping</td>
+        <td></td>
+        <td></td>
+        <td id="shipping-total"></td>
+    </tr>    
+        
+    <tr>
+        <td>Subtotal</td>
+        <td></td>
+        <td></td>
+        <td id="subtotal"></td>
+    </tr>             
+        
+    <tr>
+        <td>Tax (10%)</td>
+        <td></td>
+        <td></td>
+        <td id="tax"></td>
+    </tr>
+    
+    <tr>
+        <td>Total</td>
+        <td></td>
+        <td></td>
+        <td id="total"></td>
+    </tr>
+       
+    </table>
+    
+    <div>
+        <h3>Shipping & Handling</h3>
+        <stuff>
+            <select id="shipping">
+                <option value="0">Select one</option>
+                <option value="15">Next-Day Delivery: $15.00</option>
+                <option value="10">Three-Day Delivery: $10.00</option>
+                <option value="5">Regular (5-8 days): $5.00</option>
+            </select>
+            <error id="error">
+                
+            </error>
+        </stuff>
+        
+        <br><br>
+        <check>
+            <input id = "check" type="checkbox">
+            <span id="service">I accept the terms of this purchase.</span>
+        </check>
+        <br> 
+        
+        <button id="confirm" type="button">CONFIRM PURCHASE</button>
+    </div>
+    <bot>
+        
+    </bot>
+    <script>
+        var one = parseInt($("#1").val() * 30);
+        var two = parseInt($("#2").val() * 10);
+        var three = parseInt($("#3").val() * 20);
+        var sValue = parseInt($("#shipping option:selected").val());
+
+        var subTotal = one + two + three + sValue;
+        var tax = Math.ceil(subTotal * .1);
+        var total = subTotal + tax;
+        
+        $("#confirm").on("click", function() {
+            $("#total1").html("$" + one)
+            $("#total2").html("$" + two)
+            $("#total3").html("$" + three)
+            
+            
+            if (sValue == 0) {
+                $("#error").html("A shipping option must be selected");
+                $("#error").css("display", "inline")
+
+            }
+            else {
+                $("#error").css("display", "none")
+            }
+            
+            
+            if (!$('#check').is(":checked")) {
+                $("#service").css("color", "red")
+            }
+            else {
+                $("#service").css("color", "black")
+            }
+
+
+
+            $("#shipping-total").html("$" + sValue);
+            $("#subtotal").html("$" + subTotal);
+            $("#tax").html("$" + tax);
+            $("#total").html("$" + total);
+            
+            if (sValue != 0 && $('#check').is(":checked")) {
+                $("bot").html("THANK YOU FOR YOUR PURCHASE!")
+                $("bot").css("display", "flex")
+            }
+            else {
+                 $("bot").css("display", "none")
+            }
+            
+        })
+       
+        
+        
+    </script>
+
+</body>
+</html>
