@@ -1,0 +1,29 @@
+centered {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+buttons {
+    text-align: center;
+}
+like-buttons {
+    display: block;
+}
+#commentButton {
+    display: block;
+    text-align: center;
+}
+
+
+
+#comments {
+    display: none;
+}
+#comments div author {
+    padding-top: 1rem;
+}
+#comments div comment {
+    display: block;
+    padding-bottom: 1rem;
+}
