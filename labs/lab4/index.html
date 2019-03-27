@@ -41,6 +41,7 @@
           },
           success: function() {
             console.log(arguments);
+            
             var data = arguments[0];
             
             $( "#counties" ).empty();
@@ -78,15 +79,6 @@
                 $("#lon p").text(data[i]['longitude']);
               }
             }
-            
-            // $( "#counties" ).empty();
-            
-            // for(var i=0; i < data.length; i++) {
-            //   var newOption = document.createElement("option");
-            //   newOption.textContent = data[i]['county'];
-            //   // $("#counties").append(```<option value='i'${data['county']['i']}</option>```);
-            //   $("#counties").append(newOption);
-            // }
           },
           complete: function(data,status) { //optional, used for debugging purposes
             //console.log(status);

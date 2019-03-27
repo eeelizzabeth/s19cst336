@@ -1,0 +1,10 @@
+[27-Mar-2019 00:20:02 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FROM om_category ORDER BY catName' at line 1' in /home/ubuntu/workspace/s19cst336/labs/lab6/api/getCategories.php:8
+Stack trace:
+#0 /home/ubuntu/workspace/s19cst336/labs/lab6/api/getCategories.php(8): PDOStatement->execute()
+#1 {main}
+  thrown in /home/ubuntu/workspace/s19cst336/labs/lab6/api/getCategories.php on line 8
+[27-Mar-2019 00:28:21 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[3D000]: Invalid catalog name: 1046 No database selected' in /home/ubuntu/workspace/s19cst336/labs/lab6/api/getCategories.php:8
+Stack trace:
+#0 /home/ubuntu/workspace/s19cst336/labs/lab6/api/getCategories.php(8): PDOStatement->execute()
+#1 {main}
+  thrown in /home/ubuntu/workspace/s19cst336/labs/lab6/api/getCategories.php on line 8
