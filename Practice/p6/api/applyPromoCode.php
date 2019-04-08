@@ -1,6 +1,6 @@
 <?php
-$halfCode = array();
-$triCode = array();
+$halfCode = array(); // 50%
+$triCode = array(); //
 $twoCode = array();
 $allCodes = array();
 
