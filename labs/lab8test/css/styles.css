@@ -1,0 +1,25 @@
+#title, #search {
+    text-align: center;
+}
+#searchBar, #searchButton {
+    display: inline;
+}
+
+img{
+    height: 30px;
+}
+
+/*.column {*/
+/*  float: left;*/
+/*  width: 33.33%;*/
+/*  padding: 5px;*/
+/*  height: 200px;*/
+/*}*/
+
+/* Clearfix (clear floats) */
+/*#images::after {*/
+/*  box-sizing: border-box;*/
+/*  content: "";*/
+/*  clear: both;*/
+/*  display: table;*/
+/*}*/
