@@ -15,23 +15,33 @@
       <div><label>Last Name:</label><input type="text"></div>
       <div><label>Email:</label><input type="text"></div>
       <div><label>Phone Number:</label><input type="text"></div>
-      <div><label>Zip Code:</label><input type="text" id="zip"></div>
-      <div><label>City:</label></div>
-      <div><label id="lat">Latitude:<p></p></label></div>
-      <div><label id="lon">Longitude:<p></p></label></div>
+      <div><label>Zip Code:</label><input type="text" id="zip"> <label id="zipError"></label></div>
+      <div><label id="city">City:</label></div>
+      <div><label id="lat">Latitude:</label></div>
+      <div><label id="lon">Longitude:</label></div>
       <div><label>State:</label><input type="text" id="state"></div>
       <div><label >Select a County:</label><select id="counties" ></select></div>
-      <div><label>Desired Username:</label><input type="text"></div>
-      <div><label>Password:</label><input type="password"></div>
-      <div><label>Type Password Again:</label><input type="password"></div>
+      <div>
+        <label>Desired Username:</label><input type="text" id="user">
+        <p id="yes" style="display:none">Username is valid!</p>
+        <p id="no" style="display:none">Username invalid! Please try again.</p>
+      </div>
+      </div>
+        <label>Password:</label><input type="password" id="pwd">
+        </br>
+        <label id = "maybe">Suggested Password: </label>
+      </div>
+      <div>
+        <label>Type Password Again:</label><input type="password" id="re-pwd">
+      </div>
+      <div id="invalid"></div>
       <div><input type="button" value="Sign up!" id="login"></div>
     </fieldset>
   </form>
   
   <script>
-    $("#login").click(displayInfo);
     
-    function displayInfo() {
+    $("#state").on('change', function(s) {
       $.ajax({
           type: "get",
           url: "http://itcdland.csumb.edu/~milara/ajax/countyList.php",
@@ -40,6 +50,7 @@
             "state": $("#state").val()
           },
           success: function() {
+            console.log("states");
             console.log(arguments);
             
             var data = arguments[0];
@@ -49,15 +60,10 @@
             for(var i=0; i < data.length; i++) {
               var newOption = document.createElement("option");
               newOption.textContent = data[i]['county'];
-              // $("#counties").append(```<option value='i'${data['county']['i']}</option>```);
               $("#counties").append(newOption);
             }
-          },
-          complete: function(data,status) { //optional, used for debugging purposes
-            //console.log(status);
-            
           }
-         });
+         });//ajax
          
          $.ajax({
           type: "get",
@@ -67,25 +73,72 @@
             "zip": $("#zip").val()
           },
           success: function() {
+            console.log("zip codes");
             console.log(arguments);
             var data = arguments[0];
-            
-            for(var i=0; i<data.length; i++)
+          
+            var zip = data["zip"];
+            if(zip === $("#zip").val())
             {
-              var zip = data[i][0];
-              if(zip === $("#zip").textContent)
-              {
-                $("#lit p").text(data[i]['latitude']);
-                $("#lon p").text(data[i]['longitude']);
-              }
+              $("#city").html("City: " + data['city']);
+              $("#lat").html("Latitude: " + data['latitude']);
+              $("#lon").html("Longitude: " + data['longitude']);
+              
+              $("#zipError").html("");
             }
-          },
-          complete: function(data,status) { //optional, used for debugging purposes
-            //console.log(status);
-            
+            else{
+              $("#zipError").append("Zip code not found");
+            }
+      
           }
-         });
-    }
+         }); // ajax
+         
+         $.ajax({
+             type: "GET",
+             url: "randomPwd.php",
+             dataType: "json",
+             success: function (data) {
+               console.log("random");
+               console.log(data);
+               $("#maybe").html("Suggested Password: " + data);
+            }
+          }); //ajax
+          
+    });// on change     
+    
+    $("login").on( 'click', function (o) {
+      
+      if($("#pwd").val() != $("#re-pwd").val())
+         {
+           $("#invalid").html("Retype Password");
+           $("#invalid").css("color", "red");
+         }
+         else{
+           $("#invalid").html("");
+         }
+         
+        $.ajax({
+          type: "GET",
+          url: "validate.php",
+          dataType: "json",
+          data: {
+           "user": $("#user").val() 
+          },
+          success: function(data) {
+            console.log(data);
+            if(data === true)
+            {
+              $("#no").css("color", "red");
+              $("#no").show();
+            }
+            else
+            {
+              $("#yes").css("color", "green");
+              $("#yes").show();
+            }
+          }
+        });//ajax call
+    }); // on click
   </script>
   
 </body>
